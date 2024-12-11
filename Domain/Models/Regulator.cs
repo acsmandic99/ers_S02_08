@@ -54,6 +54,13 @@ namespace Domain.Models
             this.pocetakDnevnogRezima = pocetakDnevnogRezima;
             this.ciljanaDnevnaTemperatura = ciljanaDnevnaTemperatura;
             this.ciljanaNocnaTemperatura = ciljanaNocnaTemperatura;
+            for (int i = 0; i < RegulatorConstants.MaxUredjaj; i++) 
+            {
+                if (rezim == RegulatorRezimRada.Nocni)
+                    trenutneTemperature[i] = ciljanaNocnaTemperatura;
+                else
+                    trenutneTemperature[i] = ciljanaDnevnaTemperatura;
+            }
         }
     }
 }
