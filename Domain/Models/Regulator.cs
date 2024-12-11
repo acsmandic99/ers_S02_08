@@ -1,4 +1,5 @@
-﻿using Domain.Enums;
+﻿using Domain.Constants;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,46 +10,50 @@ namespace Domain.Models
 {
     public class Regulator
     {
-		private RezimRada rezim;
+		private RegulatorRezimRada rezim;
 
-		public RezimRada Rezim
-		{
-			get { return rezim; }
-			set { rezim = value; }
-		}
 
-		private TimeSpan pocetakDnevnogRezima;
+        private TimeSpan krajDnevnogRezima;
+        private TimeSpan pocetakDnevnogRezima;
+        private int ciljanaDnevnaTemperatura;
+        private int ciljanaNocnaTemperatura;
+		private int[] trenutneTemperature = new int[RegulatorConstants.MaxUredjaj];
 
-		public TimeSpan PocetakDnevnogRezima
+        public TimeSpan PocetakDnevnogRezima
 		{
 			get { return pocetakDnevnogRezima; }
 			set { pocetakDnevnogRezima = value; }
 		}
 
-		private TimeSpan krajDnevnogRezima;
+        public RegulatorRezimRada Rezim
+        {
+            get { return rezim; }
+            set { rezim = value; }
+        }
 
-		public TimeSpan KrajDnevnogRezima
+        public TimeSpan KrajDnevnogRezima
 		{
 			get { return krajDnevnogRezima; }
 			set { krajDnevnogRezima = value; }
 		}
-
-		private int ciljanaDnevnaTemperatura;
-
 		public int CiljanaDnevnaTemperatura
 		{
 			get { return ciljanaDnevnaTemperatura; }
 			set { ciljanaDnevnaTemperatura = value; }
 		}
-
-		private int ciljanaNocnaTemperatura;
-
 		public int CiljanaNocnaTemperatura
 		{
 			get { return ciljanaNocnaTemperatura; }
 			set { ciljanaNocnaTemperatura = value; }
 		}
 
-
-	}
+        public Regulator(RegulatorRezimRada rezim, TimeSpan krajDnevnogRezima, TimeSpan pocetakDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
+        {
+            this.rezim = rezim;
+            this.krajDnevnogRezima = krajDnevnogRezima;
+            this.pocetakDnevnogRezima = pocetakDnevnogRezima;
+            this.ciljanaDnevnaTemperatura = ciljanaDnevnaTemperatura;
+            this.ciljanaNocnaTemperatura = ciljanaNocnaTemperatura;
+        }
+    }
 }
