@@ -14,8 +14,9 @@ namespace Application
             //Testiram,posle cemo obrisati ovo
             TimeSpan span = TimeSpan.FromSeconds(10);
 
-            DateTime pocetakDnevnogRezima = DateTime.Today.AddHours(10);
-            DateTime krajDnevnogRezima = DateTime.Today.AddHours(19);
+            DateTime pocetakDnevnogRezima = DateTime.Today.AddHours(20);
+            pocetakDnevnogRezima = pocetakDnevnogRezima.AddMinutes(18);
+            DateTime krajDnevnogRezima = DateTime.Today.AddHours(22);
             krajDnevnogRezima = krajDnevnogRezima.AddMinutes(54);
             Console.WriteLine($"Kraj dnevnog {krajDnevnogRezima}");
             DateTime dt = DateTime.Now;

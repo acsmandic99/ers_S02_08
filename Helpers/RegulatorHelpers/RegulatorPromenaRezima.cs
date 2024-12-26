@@ -20,13 +20,13 @@ namespace Helpers.RegulatorHelpers
                 {
                     interval = r.KrajDnevnogRezima - trenutnoVreme;
                     r.Rezim = RegulatorRezimRada.Dnevni;
-                    Thread.Sleep((int)interval.TotalMilliseconds);
+                    Thread.Sleep(Math.Abs((int)interval.TotalMilliseconds));
                 }
                 else
                 {
                     interval = trenutnoVreme - r.PocetakDnevnogRezima;
                     r.Rezim = RegulatorRezimRada.Nocni;
-                    Thread.Sleep((int)interval.TotalMilliseconds);
+                    Thread.Sleep(Math.Abs((int)interval.TotalMilliseconds));
                 }
                 
             }
