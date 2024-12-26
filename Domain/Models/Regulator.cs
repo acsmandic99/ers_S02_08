@@ -13,13 +13,19 @@ namespace Domain.Models
 		private RegulatorRezimRada rezim;
 
 
-        private TimeSpan krajDnevnogRezima;
-        private TimeSpan pocetakDnevnogRezima;
+        private DateTime krajDnevnogRezima;
+        private DateTime pocetakDnevnogRezima;
         private int ciljanaDnevnaTemperatura;
         private int ciljanaNocnaTemperatura;
 		private int[] trenutneTemperature = new int[RegulatorConstants.MaxUredjaj];
+        int index = 0;
 
-        public TimeSpan PocetakDnevnogRezima
+        public int[] TrenutneTemperature
+        {
+            get { return trenutneTemperature; }
+            set { trenutneTemperature = value; }
+        }
+        public DateTime PocetakDnevnogRezima
 		{
 			get { return pocetakDnevnogRezima; }
 			set { pocetakDnevnogRezima = value; }
@@ -31,7 +37,7 @@ namespace Domain.Models
             set { rezim = value; }
         }
 
-        public TimeSpan KrajDnevnogRezima
+        public DateTime KrajDnevnogRezima
 		{
 			get { return krajDnevnogRezima; }
 			set { krajDnevnogRezima = value; }
@@ -47,13 +53,31 @@ namespace Domain.Models
 			set { ciljanaNocnaTemperatura = value; }
 		}
 
-        public Regulator(RegulatorRezimRada rezim, TimeSpan krajDnevnogRezima, TimeSpan pocetakDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
+        public void DodajTrenutnuTemperaturu(int temperatura)
         {
-            this.rezim = rezim;
+            trenutneTemperature[index] = temperatura;
+            index++;
+            if (index == RegulatorConstants.MaxUredjaj)
+                index = 0;
+        }
+
+        public Regulator(DateTime pocetakDnevnogRezima, DateTime krajDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
+        {
             this.krajDnevnogRezima = krajDnevnogRezima;
             this.pocetakDnevnogRezima = pocetakDnevnogRezima;
             this.ciljanaDnevnaTemperatura = ciljanaDnevnaTemperatura;
             this.ciljanaNocnaTemperatura = ciljanaNocnaTemperatura;
+            DateTime trenutnoVreme = DateTime.Now;
+
+
+            if (trenutnoVreme >= pocetakDnevnogRezima && trenutnoVreme < krajDnevnogRezima)
+            {
+                rezim = RegulatorRezimRada.Dnevni;
+            }
+            else
+            {
+                rezim = RegulatorRezimRada.Nocni;
+            }
             for (int i = 0; i < RegulatorConstants.MaxUredjaj; i++) 
             {
                 if (rezim == RegulatorRezimRada.Nocni)

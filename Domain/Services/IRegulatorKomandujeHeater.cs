@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Services
 {
-    public interface IDeviceSaljeTempServis
+    public interface IRegulatorKomandujeHeater
     {
-        void SaljeVrednost(Device device, Regulator regulator);
+        void RegulatorSaljeKomande(Regulator regulator, Heater heater);
     }
 }

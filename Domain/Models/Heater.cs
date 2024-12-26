@@ -17,6 +17,14 @@ namespace Domain.Models
 			get { return rezimRada; }
 			set { rezimRada = value; }
 		}
+		public void UkljuciPec()
+		{
+			ukljucen = true;
+		}
+		public void IskljuciPec()
+		{
+			ukljucen = false;
+		}
 		public bool Ukljucen
 		{
 			get { return ukljucen; }

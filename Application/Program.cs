@@ -2,6 +2,8 @@
 using Domain;
 using Domain.Models;
 using Domain.Enums;
+using Helpers;
+using Helpers.RegulatorHelpers;
 
 namespace Application
 {
@@ -11,19 +13,31 @@ namespace Application
         {
             //Testiram,posle cemo obrisati ovo
             TimeSpan span = TimeSpan.FromSeconds(10);
-            TimeSpan dnevniP = new TimeSpan(8, 0, 0);
-            TimeSpan dnevniK = new TimeSpan(20, 0, 0);
 
-
+            DateTime pocetakDnevnogRezima = DateTime.Today.AddHours(10);
+            DateTime krajDnevnogRezima = DateTime.Today.AddHours(19);
+            krajDnevnogRezima = krajDnevnogRezima.AddMinutes(54);
+            Console.WriteLine($"Kraj dnevnog {krajDnevnogRezima}");
             DateTime dt = DateTime.Now;
             Console.WriteLine(dt);
-            Console.WriteLine(span);
             Device d1 = new Device(1,span);
             Device d2 = new Device(2,span);
             Device d3 = new Device(3,span);
             Device d4 = new Device(4,span);
-            Regulator r = new Regulator(RegulatorRezimRada.Dnevni, dnevniK, dnevniP, 22, 19);
+            Regulator r = new Regulator(pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
+            RegulatorPromenaRezima.PromenaRezimaNoviThread(r);
+            TimeSpan interval = krajDnevnogRezima - pocetakDnevnogRezima;
+            Console.WriteLine($"Interval :{interval}");
             Console.WriteLine("Test123");
+            Console.WriteLine("Test123");
+            Console.WriteLine("Test123");
+            Console.WriteLine("Test123");
+            while(true)
+            {
+                int x;
+                Console.WriteLine("Upisi broj");
+                x = Int32.Parse(Console.ReadLine());
+            }
             Console.ReadLine();
         }
     }
