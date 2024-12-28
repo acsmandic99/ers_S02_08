@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Reglator\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reglator\" />
+  </ItemGroup>
 </Project>

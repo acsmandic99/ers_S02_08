@@ -7,6 +7,8 @@
         public const int MaxUredjaj = 4;
         public const int MinTemperature = 16;
         public const int MaxTemperature = 30;
+        public const int IntervalProvereTemperatura = 3; // u minutima
+        public const double PovecanjeTemperature = 0.01; // na svaka 2 minuta
     }
 
 }
