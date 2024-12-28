@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="HeaterServisi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HeaterServisi\" />
+  </ItemGroup>
 </Project>

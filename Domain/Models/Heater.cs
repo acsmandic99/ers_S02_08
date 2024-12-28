@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.PomocneMetode;
 
 namespace Domain.Models
 {
@@ -17,19 +18,25 @@ namespace Domain.Models
 			get { return rezimRada; }
 			set { rezimRada = value; }
 		}
-		public void UkljuciPec()
-		{
-			ukljucen = true;
-		}
-		public void IskljuciPec()
-		{
-			ukljucen = false;
-		}
+		
 		public bool Ukljucen
 		{
 			get { return ukljucen; }
-			set { ukljucen = value; }
+			set
+			{
+				if(ukljucen == true)
+				{
+					var pomocna = new IskljuciPecPomocna();
+					ukljucen = pomocna.IskljuciPec(false);
+				}
+				else
+				{
+                    var pomocna = new UkljuciPecPomocna();
+                    ukljucen = pomocna.UkljuciPec(true);
+                }
+			}
 		}
+
 		private DateTime? trenutakUkljucenja;
 
 		public DateTime TrenutakUkljucenja
