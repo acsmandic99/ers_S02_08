@@ -13,7 +13,4 @@
   <ItemGroup>
     <None Remove="PomocneMetode\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PomocneMetode\" />
-  </ItemGroup>
 </Project>

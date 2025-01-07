@@ -10,5 +10,4 @@
         public const int IntervalProvereTemperatura = 3; // u minutima
         public const double PovecanjeTemperature = 0.01; // na svaka 2 minuta
     }
-
 }

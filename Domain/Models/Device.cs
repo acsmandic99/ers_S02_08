@@ -17,7 +17,7 @@ namespace Domain.Models
 			set { trenutnaTemp = value; }
 		}
 
-		private TimeSpan intervalMerenja;
+		private TimeSpan intervalMerenja;//Radi jednostavnosti recimo da je ovo deo njegove specifikacije pa mu je zato mesto ovde
 
 		public TimeSpan IntervalMerenja
 		{
@@ -27,6 +27,7 @@ namespace Domain.Models
 
         public Device(int idDevice,TimeSpan intervalMerenja)
         {
+			//TO DO: Osigurati da bude Jedinstveni ID
             IdDevice = idDevice;
             this.intervalMerenja = intervalMerenja;
         }
