@@ -41,12 +41,15 @@ namespace Domain.Models
 
         double ITemperaturaMenadzer.IzracunajProsecnuTemperaturu()
         {
-            double suma = 0;
-            for(int i = 0;i<RegulatorConstants.MaxUredjaj;i++)
+            lock(_lock) //zakljucavamo da slucajno ne bi neka nit pisala dok citamo podatke
             {
-                suma += temperature[i];
+                double suma = 0;
+                for(int i = 0;i<RegulatorConstants.MaxUredjaj;i++)
+                {
+                    suma += temperature[i];
+                }
+                return (suma / RegulatorConstants.MaxUredjaj);
             }
-            return (suma / RegulatorConstants.MaxUredjaj);
         }
     }
 }
