@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Domain.Interfejsi;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Domain.Services
 {
     public interface IDeviceSaljeTempServis
     {
-        void SaljeVrednost(Device device, Regulator regulator);
+        void SaljeVrednost(Device device);
     }
 }

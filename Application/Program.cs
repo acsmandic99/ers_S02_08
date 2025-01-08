@@ -4,6 +4,8 @@ using Domain.Models;
 using Domain.Enums;
 using Helpers;
 using Helpers.RegulatorHelpers;
+using Services.TemperaturaServisi;
+using Domain.Services;
 
 namespace Application
 {
@@ -27,7 +29,11 @@ namespace Application
             Device d4 = new Device(4,span);
 
             MenadzerTemperatura MT = new MenadzerTemperatura();
-
+            IDeviceSaljeTempServis slanjeTemperatureServis = new SlanjeTemperatureServis(MT);
+            slanjeTemperatureServis.SaljeVrednost(d1);
+            slanjeTemperatureServis.SaljeVrednost(d2);
+            slanjeTemperatureServis.SaljeVrednost(d3);
+            slanjeTemperatureServis.SaljeVrednost(d4);
 
 
 
