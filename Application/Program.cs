@@ -25,8 +25,15 @@ namespace Application
             Device d2 = new Device(2,span);
             Device d3 = new Device(3,span);
             Device d4 = new Device(4,span);
+
+            MenadzerTemperatura MT = new MenadzerTemperatura();
+
+
+
+
             Regulator r = new Regulator(pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
             RegulatorPromenaRezima.PromenaRezimaNoviThread(r);
+            Console.WriteLine(r.Rezim.ToString());
             TimeSpan interval = krajDnevnogRezima - pocetakDnevnogRezima;
             Console.WriteLine($"Interval :{interval}");
             Console.WriteLine("Test123");

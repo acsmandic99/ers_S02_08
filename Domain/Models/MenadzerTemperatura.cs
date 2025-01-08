@@ -12,12 +12,31 @@ namespace Domain.Models
     {
         private int[] temperature = new int[RegulatorConstants.MaxUredjaj];
         int idx = 0;
+        private static readonly object _lock = new object();
+        bool zauzet = false;
+        
         void ITemperaturaMenadzer.DodajTemperaturu(int novaTemperatura)
         {
-            temperature[idx] = novaTemperatura;
-            idx++;
-            if (idx == 4)
-                idx = 0;
+            /*
+             Jako slicno kao iz OS-a sto smo radili sa mutexom i condition variablom samo nam je ovde dosta ovaj _lock
+            Monitor.Wait je isto kao sto smo imali na OS-u cv.wait()
+            Monitor.PulseAll() nam je slicno kao cv.notify_all()
+            a lock je slican kao unique_lock<mutex> l(mtx) u smislu da cim se izadje iz scope-a poziva se destruktor 
+            i oslobadja se resurs
+            podseti se malo iz OS-a kako to radi ako ne budes razumeo pitaj me
+             */
+            lock(_lock)
+            {
+                while (zauzet == true)
+                    Monitor.Wait(_lock);
+                zauzet = true;
+                temperature[idx] = novaTemperatura;
+                idx++;
+                if (idx == 4)
+                    idx = 0;
+                zauzet = false;
+                Monitor.PulseAll(_lock);
+            }
         }
 
         double ITemperaturaMenadzer.IzracunajProsecnuTemperaturu()
