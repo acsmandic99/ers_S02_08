@@ -12,9 +12,22 @@ namespace Services.RegulatorServisi
 {
     public class RegulatorServis : IRegulatorKomandujeHeater
     {
-        public void RegulatorSaljeKomande(Regulator regulator, Heater heater)
+        private readonly Regulator _regulator;
+        private readonly Heater _heater;
+
+        public RegulatorServis(Regulator regulator, Heater heater)
         {
-            throw new NotImplementedException();
+            _regulator = regulator;
+            _heater = heater;
+        }
+
+        public void RegulatorSaljeKomande()
+        {
+            //temp manja ispod trazene dnevne temo
+            if(_regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() < _regulator.CiljanaDnevnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Dnevni)
+            {
+
+            }
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Domain.Services
 {
     public interface IRegulatorKomandujeHeater
     {
-        void RegulatorSaljeKomande(Regulator regulator, Heater heater);
+        void RegulatorSaljeKomande();
     }
 }

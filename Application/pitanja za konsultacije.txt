@@ -1,3 +1,4 @@
 ﻿Ovde mozemo dodavati sva pitanja za kons kako ne bi zaboravili nesto
 1.Da li RegulatorPromenaRezima da se izbaci iz Helpersa i napravi novi servis iz nje ili nesto drugo?
 2.Da li napraviti Interfejse za Device,Regulator,Heater kako bi mogli da obezbedimo drugacije implementacije tih komponenti ili ipak idem previse daleko....
+3.Da li da ItemperaturaMenadzer bude kao polje u Regulatoru ili da sve povezem u servisu?

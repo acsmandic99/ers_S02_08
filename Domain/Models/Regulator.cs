@@ -1,5 +1,6 @@
 ﻿using Domain.Constants;
 using Domain.Enums;
+using Domain.Interfejsi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,11 @@ namespace Domain.Models
         private DateTime pocetakDnevnogRezima;
         private int ciljanaDnevnaTemperatura;
         private int ciljanaNocnaTemperatura;
-		private int[] trenutneTemperature = new int[RegulatorConstants.MaxUredjaj];
+        private readonly ITemperaturaMenadzer _temperaturaMenadzer;
         int index = 0;
 
-        public int[] TrenutneTemperature
-        {
-            get { return trenutneTemperature; }
-            set { trenutneTemperature = value; }
-        }
+
+        public ITemperaturaMenadzer TemperaturaMenadzer => _temperaturaMenadzer;
         public DateTime PocetakDnevnogRezima
 		{
 			get { return pocetakDnevnogRezima; }
@@ -53,13 +51,6 @@ namespace Domain.Models
 			set { ciljanaNocnaTemperatura = value; }
 		}
 
-        public void DodajTrenutnuTemperaturu(int temperatura)
-        {
-            trenutneTemperature[index] = temperatura;
-            index++;
-            if (index == RegulatorConstants.MaxUredjaj)
-                index = 0;
-        }
 
         public Regulator(DateTime pocetakDnevnogRezima, DateTime krajDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
         {
@@ -68,6 +59,7 @@ namespace Domain.Models
             this.ciljanaDnevnaTemperatura = ciljanaDnevnaTemperatura;
             this.ciljanaNocnaTemperatura = ciljanaNocnaTemperatura;
             DateTime trenutnoVreme = DateTime.Now;
+            this._temperaturaMenadzer = new MenadzerTemperatura();
 
 
             if (trenutnoVreme >= pocetakDnevnogRezima && trenutnoVreme < krajDnevnogRezima)
@@ -78,12 +70,24 @@ namespace Domain.Models
             {
                 rezim = RegulatorRezimRada.Nocni;
             }
-            for (int i = 0; i < RegulatorConstants.MaxUredjaj; i++) 
+        }
+        public Regulator(ITemperaturaMenadzer tempMenadzer,DateTime pocetakDnevnogRezima, DateTime krajDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
+        {
+            this.krajDnevnogRezima = krajDnevnogRezima;
+            this.pocetakDnevnogRezima = pocetakDnevnogRezima;
+            this.ciljanaDnevnaTemperatura = ciljanaDnevnaTemperatura;
+            this.ciljanaNocnaTemperatura = ciljanaNocnaTemperatura;
+            DateTime trenutnoVreme = DateTime.Now;
+            this._temperaturaMenadzer = tempMenadzer;
+
+
+            if (trenutnoVreme >= pocetakDnevnogRezima && trenutnoVreme < krajDnevnogRezima)
             {
-                if (rezim == RegulatorRezimRada.Nocni)
-                    trenutneTemperature[i] = ciljanaNocnaTemperatura;
-                else
-                    trenutneTemperature[i] = ciljanaDnevnaTemperatura;
+                rezim = RegulatorRezimRada.Dnevni;
+            }
+            else
+            {
+                rezim = RegulatorRezimRada.Nocni;
             }
         }
     }

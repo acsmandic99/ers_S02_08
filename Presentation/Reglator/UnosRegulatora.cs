@@ -5,8 +5,6 @@ namespace Presentation.Reglator
 	{
 		public UnosRegulatora()
 		{
-
-
 		}
 	}
 }

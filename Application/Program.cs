@@ -47,7 +47,7 @@ namespace Application
             );
             t.Start();
 
-            Regulator r = new Regulator(pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
+            Regulator r = new Regulator(MT,pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
             RegulatorPromenaRezima.PromenaRezimaNoviThread(r);
             //Console.WriteLine(r.Rezim.ToString());
             TimeSpan interval = krajDnevnogRezima - pocetakDnevnogRezima;
