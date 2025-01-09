@@ -18,24 +18,33 @@ namespace Domain.Models
         void ITemperaturaMenadzer.DodajTemperaturu(int novaTemperatura)
         {
             /*
-             Jako slicno kao iz OS-a sto smo radili sa mutexom i condition variablom samo nam je ovde dosta ovaj _lock
+                Jako slicno kao iz OS-a sto smo radili sa mutexom i condition variablom samo nam je ovde dosta ovaj _lock
             Monitor.Wait je isto kao sto smo imali na OS-u cv.wait()
             Monitor.PulseAll() nam je slicno kao cv.notify_all()
             a lock je slican kao unique_lock<mutex> l(mtx) u smislu da cim se izadje iz scope-a poziva se destruktor 
             i oslobadja se resurs
             podseti se malo iz OS-a kako to radi ako ne budes razumeo pitaj me
-             */
-            lock(_lock)
+                */
+            Monitor.Enter(_lock); //lock
+            try
             {
                 while (zauzet == true)
+                { 
+                    //Console.WriteLine("Neko vec pise pa ja cekam");
                     Monitor.Wait(_lock);
+                    //Console.WriteLine("Probudio sam se"); 
+                }
                 zauzet = true;
                 temperature[idx] = novaTemperatura;
                 idx++;
                 if (idx == 4)
                     idx = 0;
+                
+            }finally
+            {
                 zauzet = false;
-                Monitor.PulseAll(_lock);
+                Monitor.PulseAll(_lock);//notify_all
+                Monitor.Exit(_lock);//unlock
             }
         }
 
