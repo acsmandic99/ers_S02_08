@@ -24,9 +24,21 @@ namespace Services.RegulatorServisi
         public void RegulatorSaljeKomande()
         {
             //temp manja ispod trazene dnevne temo
-            if(_regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() < _regulator.CiljanaDnevnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Dnevni)
+            if(_heater.Ukljucen == false && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() < _regulator.CiljanaDnevnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Dnevni)
             {
-
+                _heater.Ukljuci();
+            }
+            else if(_heater.Ukljucen == true && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() >= _regulator.CiljanaDnevnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Dnevni)
+            {
+                _heater.Iskljuci();
+            }
+            else if(_heater.Ukljucen == false && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() < _regulator.CiljanaNocnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Nocni)
+            {
+                _heater.Ukljuci();
+            }
+            else if(_heater.Ukljucen == true && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() >= _regulator.CiljanaNocnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Nocni)
+            {
+                _heater.Iskljuci();
             }
         }
     }

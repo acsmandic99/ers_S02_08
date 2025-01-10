@@ -12,6 +12,11 @@ namespace Domain.Models
 		private bool ukljucen;
 		private HeaterRezimRada rezimRada;
 
+		public bool Ukljucen
+		{
+			get { return ukljucen; }
+			set { ukljucen = value;}
+		}
 		public HeaterRezimRada RezimRada
 		{
 			get { return rezimRada; }
