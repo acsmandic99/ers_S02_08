@@ -12,29 +12,22 @@ namespace Domain.Models
     public class Regulator
     {
 		private RegulatorRezimRada rezim;
-
-
         private DateTime krajDnevnogRezima;
         private DateTime pocetakDnevnogRezima;
         private int ciljanaDnevnaTemperatura;
         private int ciljanaNocnaTemperatura;
         private readonly ITemperaturaMenadzer _temperaturaMenadzer;
-        int index = 0;
-
-
         public ITemperaturaMenadzer TemperaturaMenadzer => _temperaturaMenadzer;
         public DateTime PocetakDnevnogRezima
 		{
 			get { return pocetakDnevnogRezima; }
 			set { pocetakDnevnogRezima = value; }
 		}
-
         public RegulatorRezimRada Rezim
         {
             get { return rezim; }
             set { rezim = value; }
         }
-
         public DateTime KrajDnevnogRezima
 		{
 			get { return krajDnevnogRezima; }
@@ -50,8 +43,6 @@ namespace Domain.Models
 			get { return ciljanaNocnaTemperatura; }
 			set { ciljanaNocnaTemperatura = value; }
 		}
-
-
         public Regulator(DateTime pocetakDnevnogRezima, DateTime krajDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
         {
             this.krajDnevnogRezima = krajDnevnogRezima;
@@ -60,8 +51,6 @@ namespace Domain.Models
             this.ciljanaNocnaTemperatura = ciljanaNocnaTemperatura;
             DateTime trenutnoVreme = DateTime.Now;
             this._temperaturaMenadzer = new MenadzerTemperatura();
-
-
             if (trenutnoVreme >= pocetakDnevnogRezima && trenutnoVreme < krajDnevnogRezima)
             {
                 rezim = RegulatorRezimRada.Dnevni;
@@ -79,8 +68,6 @@ namespace Domain.Models
             this.ciljanaNocnaTemperatura = ciljanaNocnaTemperatura;
             DateTime trenutnoVreme = DateTime.Now;
             this._temperaturaMenadzer = tempMenadzer;
-
-
             if (trenutnoVreme >= pocetakDnevnogRezima && trenutnoVreme < krajDnevnogRezima)
             {
                 rezim = RegulatorRezimRada.Dnevni;

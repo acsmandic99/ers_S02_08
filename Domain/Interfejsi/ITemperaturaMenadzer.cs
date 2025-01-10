@@ -9,6 +9,6 @@ namespace Domain.Interfejsi
     public interface ITemperaturaMenadzer
     {
         double IzracunajProsecnuTemperaturu();
-        void DodajTemperaturu(int novaTemperatura);
+        void DodajTemperaturu(double novaTemperatura);
     }
 }
