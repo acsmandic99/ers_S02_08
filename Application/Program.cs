@@ -7,6 +7,7 @@ using Helpers.RegulatorHelpers;
 using Services.TemperaturaServisi;
 using Domain.Services;
 using Domain.Interfejsi;
+using Services.RegulatorServisi;
 
 namespace Application
 {
@@ -24,17 +25,33 @@ namespace Application
             //Console.WriteLine($"Kraj dnevnog {krajDnevnogRezima}");
             DateTime dt = DateTime.Now;
             //Console.WriteLine(dt);
+            Heater heater = new Heater();
+            ITemperaturaMenadzer MT = new MenadzerTemperatura();
+            IDeviceSaljeTempServis slanjeTemperatureServis = new SlanjeTemperatureServis(MT,heater);
+            Regulator r = new Regulator(MT, pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
+            RegulatorPromenaRezima.PromenaRezimaNoviThread(r);
             Device d1 = new Device(1,TimeSpan.FromMilliseconds(500));
             Device d2 = new Device(2, TimeSpan.FromMilliseconds(470));
             Device d3 = new Device(3, TimeSpan.FromMilliseconds(350));
             Device d4 = new Device(4, TimeSpan.FromMilliseconds(220));
 
-            ITemperaturaMenadzer MT = new MenadzerTemperatura();
-            IDeviceSaljeTempServis slanjeTemperatureServis = new SlanjeTemperatureServis(MT);
+            
             slanjeTemperatureServis.SaljeVrednost(d1);
             slanjeTemperatureServis.SaljeVrednost(d2);
             slanjeTemperatureServis.SaljeVrednost(d3);
             slanjeTemperatureServis.SaljeVrednost(d4);
+
+            IRegulatorKomandujeHeater regulatorServis = new RegulatorServis(r, heater);
+
+            Thread t1 = new Thread(() =>
+            {
+                while (true)
+                {
+                    regulatorServis.RegulatorSaljeKomande();
+                    Thread.Sleep(4999);
+                }
+            });
+            t1.Start();
 
             Thread t = new Thread(() =>
             {
@@ -46,18 +63,6 @@ namespace Application
             }
             );
             t.Start();
-
-            Regulator r = new Regulator(MT,pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
-            RegulatorPromenaRezima.PromenaRezimaNoviThread(r);
-            //Console.WriteLine(r.Rezim.ToString());
-            TimeSpan interval = krajDnevnogRezima - pocetakDnevnogRezima;
-            //Console.WriteLine($"Interval :{interval}");
-            while(true)
-            {
-                int x;
-                //Console.WriteLine("Upisi broj");
-                x = Int32.Parse(Console.ReadLine());
-            }
             Console.ReadLine();
         }
     }

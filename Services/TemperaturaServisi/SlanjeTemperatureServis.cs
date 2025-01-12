@@ -1,6 +1,7 @@
 ﻿using Domain.Interfejsi;
 using Domain.Models;
 using Domain.Services;
+using Helpers.Temperature;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +13,24 @@ namespace Services.TemperaturaServisi
     public class SlanjeTemperatureServis : IDeviceSaljeTempServis
     {
         private readonly ITemperaturaMenadzer _temperaturaMenadzer;
+        private readonly Heater _heater;
 
-        public SlanjeTemperatureServis(ITemperaturaMenadzer temperaturaMenadzer)
+        public SlanjeTemperatureServis(ITemperaturaMenadzer temperaturaMenadzer, Heater heater)
         {
             _temperaturaMenadzer = temperaturaMenadzer;
+            _heater = heater;
         }
 
         public void SaljeVrednost(Device device)
         {
-            Random random = new Random();
             Thread thread = new Thread(() =>
             {
                 while (true)
                 {
-                    //TO DO: smisliti koje vrednosti da salju device-ovi 
-                    device.TrenutnaTemp = random.Next(10, 20);
+                    if (_heater.Ukljucen == true)
+                        device.TrenutnaTemp = GenerisanjeTemperature.GenerisiTemperaturu(device.TrenutnaTemp, true);
+                    else
+                        device.TrenutnaTemp = GenerisanjeTemperature.GenerisiTemperaturu(device.TrenutnaTemp, false);
                     _temperaturaMenadzer.DodajTemperaturu(device.TrenutnaTemp);
                     Console.WriteLine($"Device poslao {device.TrenutnaTemp}");
                     Thread.Sleep(device.IntervalMerenja);

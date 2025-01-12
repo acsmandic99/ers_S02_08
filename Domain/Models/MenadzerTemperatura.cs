@@ -10,12 +10,12 @@ namespace Domain.Models
     //Kako regulator ne bi morao da brine o implementaciji cuvanja temperatura sto salju Deviceovi to cemo raditi ovde
     public class MenadzerTemperatura : ITemperaturaMenadzer
     {
-        private int[] temperature = new int[RegulatorConstants.MaxUredjaj];
+        private double[] temperature = new double[RegulatorConstants.MaxUredjaj];
         int idx = 0;
         private static readonly object _lock = new object();
         bool zauzet = false;
-        
-        void ITemperaturaMenadzer.DodajTemperaturu(int novaTemperatura)
+
+        void ITemperaturaMenadzer.DodajTemperaturu(double novaTemperatura)
         {
             /*
                 Jako slicno kao iz OS-a sto smo radili sa mutexom i condition variablom samo nam je ovde dosta ovaj _lock
@@ -35,6 +35,12 @@ namespace Domain.Models
                     //Console.WriteLine("Probudio sam se"); 
                 }
                 zauzet = true;
+                //Monitor.PulseAll(_lock);
+                //Monitor.Exit(_lock);
+                //Thread.Sleep(5000);
+                //Monitor.Enter(_lock);
+                //Ovo sam je kao neko simuliranje pisanja da vidis sta se desi kada neko pokusa da pise
+                //dok druga nit vec upisuje
                 temperature[idx] = novaTemperatura;
                 idx++;
                 if (idx == 4)
