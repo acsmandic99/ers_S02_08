@@ -12,5 +12,11 @@
 
   <ItemGroup>
     <None Remove="PomocneMetode\" />
+    <None Remove="Repozitorijumi\" />
+    <None Remove="Repozitorijumi\HeaterRepozitorijum\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repozitorijumi\" />
+    <Folder Include="Repozitorijumi\HeaterRepozitorijum\" />
   </ItemGroup>
 </Project>

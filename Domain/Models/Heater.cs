@@ -23,11 +23,11 @@ namespace Domain.Models
 			set { rezimRada = value; }
 		}
 		
-		public void Ukljuci()
+		public void UkljuciPec()
 		{
 			ukljucen = true;
 		}
-		public void Iskljuci()
+		public void IskljuciPec()
 		{
 			ukljucen = false;
 		}

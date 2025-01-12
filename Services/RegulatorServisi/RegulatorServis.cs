@@ -26,22 +26,22 @@ namespace Services.RegulatorServisi
             if(_heater.Ukljucen == false && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() < _regulator.CiljanaDnevnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Dnevni)
             {
                 Console.WriteLine("Ukljucujemo pec preko dana jer smo ispod trazene temp");
-                _heater.Ukljuci();//napraiviti servis za heter i repozitorijum gde ces implementirati ono za vremenski trenutak
+                _heater.UkljuciPec();//napraiviti servis za heter i repozitorijum gde ces implementirati ono za vremenski trenutak
             }
             else if(_heater.Ukljucen == true && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() >= _regulator.CiljanaDnevnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Dnevni)
             {
                 Console.WriteLine("Dostigli smo traznu temp iskljucujemo pec");
-                _heater.Iskljuci();
+                _heater.IskljuciPec();
             }
             else if(_heater.Ukljucen == false && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() < _regulator.CiljanaNocnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Nocni)
             {
                 Console.WriteLine("Ukljucujemo pec preko noci jer smo ispod trazene temp");
-                _heater.Ukljuci();
+                _heater.UkljuciPec();
             }
             else if(_heater.Ukljucen == true && _regulator.TemperaturaMenadzer.IzracunajProsecnuTemperaturu() >= _regulator.CiljanaNocnaTemperatura && _regulator.Rezim == RegulatorRezimRada.Nocni)
             {
                 Console.WriteLine("Dostigli smo traznu temp iskljucujemo pec");
-                _heater.Iskljuci();
+                _heater.IskljuciPec();
             }
         }
     }
