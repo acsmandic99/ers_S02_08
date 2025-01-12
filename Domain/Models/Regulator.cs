@@ -43,6 +43,12 @@ namespace Domain.Models
 			get { return ciljanaNocnaTemperatura; }
 			set { ciljanaNocnaTemperatura = value; }
 		}
+
+        public Regulator()
+        {
+
+        }
+
         public Regulator(DateTime pocetakDnevnogRezima, DateTime krajDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
         {
             this.krajDnevnogRezima = krajDnevnogRezima;

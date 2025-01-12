@@ -22,6 +22,12 @@ namespace Domain.Models
 			get { return intervalMerenja; }
 			set { intervalMerenja = value; }
 		}
+
+		public Device()
+		{
+
+		}
+
         public Device(int idDevice,TimeSpan intervalMerenja)
         {
 			//TO DO: Osigurati da bude Jedinstveni ID
