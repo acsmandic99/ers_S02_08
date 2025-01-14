@@ -3,7 +3,9 @@ namespace Domain.Models
 {
 	public class PodatakRepo
 	{
-		public PodatakRepo()
+        private TimeSpan intervalMerenja;
+
+        public PodatakRepo()
 		{
 		}
 	}

@@ -13,8 +13,12 @@
 
   <ItemGroup>
     <None Remove="HeaterServisi\" />
+    <None Remove="TekstualniIspisFolder\" />
+    <None Remove="PripremaZaIspisFolder\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HeaterServisi\" />
+    <Folder Include="TekstualniIspisFolder\" />
+    <Folder Include="PripremaZaIspisFolder\" />
   </ItemGroup>
 </Project>
