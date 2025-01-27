@@ -6,12 +6,11 @@ namespace Services.HeaterServisi
     public class HeaterService : IHeaterService
     {
         private readonly Heater _heater;
-        private readonly IHeaterRepozitorijum _repository;
+        private readonly IHeaterRepozitorijum _repository = new HeaterRepozirorijum();
 
-        public HeaterService(Heater heater, IHeaterRepozitorijum repository)
+        public HeaterService(Heater heater)
         {
             _heater = heater;
-            _repository = repository;
         }
 
         public void Ukljuci()
@@ -29,7 +28,8 @@ namespace Services.HeaterServisi
             {
                 _heater.IskljuciPec();
                 var vremeKraja = DateTime.Now;
-                var trajanje = vremeKraja - _repository.TrenutniPocetakRada().Value;
+                var rad = _repository.TrenutniPocetakRada();
+                var trajanje = vremeKraja - (rad == null ? DateTime.Now : rad.Value);
                 var potrosnja = trajanje.TotalHours;
 
                 _repository.AzurirajKrajRada(vremeKraja, potrosnja);

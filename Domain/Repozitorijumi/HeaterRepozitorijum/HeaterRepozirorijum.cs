@@ -1,6 +1,6 @@
 ﻿namespace Domain.Repozitorijumi.HeaterRepozitorijum
 {
-    public class HeaterRepozirorijum
+    public class HeaterRepozirorijum : IHeaterRepozitorijum
     {
 
         private DateTime? _pocetakRada;
