@@ -1,10 +1,5 @@
-﻿using Domain.Interfejsi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Constants;
+﻿using Domain.Constants;
+using Domain.Interfejsi;
 namespace Domain.Models
 {
     //Kako regulator ne bi morao da brine o implementaciji cuvanja temperatura sto salju Deviceovi to cemo raditi ovde
@@ -29,7 +24,7 @@ namespace Domain.Models
             try
             {
                 while (zauzet == true)
-                { 
+                {
                     //Console.WriteLine("Neko vec pise pa ja cekam");
                     Monitor.Wait(_lock);
                     //Console.WriteLine("Probudio sam se"); 
@@ -45,8 +40,9 @@ namespace Domain.Models
                 idx++;
                 if (idx == 4)
                     idx = 0;
-                
-            }finally
+
+            }
+            finally
             {
                 zauzet = false;
                 Monitor.PulseAll(_lock);//notify_all
@@ -56,10 +52,10 @@ namespace Domain.Models
 
         double ITemperaturaMenadzer.IzracunajProsecnuTemperaturu()
         {
-            lock(_lock) //zakljucavamo da slucajno ne bi neka nit pisala dok citamo podatke
+            lock (_lock) //zakljucavamo da slucajno ne bi neka nit pisala dok citamo podatke
             {
                 double suma = 0;
-                for(int i = 0;i<RegulatorConstants.MaxUredjaj;i++)
+                for (int i = 0; i < RegulatorConstants.MaxUredjaj; i++)
                 {
                     suma += temperature[i];
                 }

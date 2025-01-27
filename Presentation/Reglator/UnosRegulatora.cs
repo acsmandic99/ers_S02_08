@@ -1,11 +1,10 @@
-﻿using System;
-namespace Presentation.Reglator
+﻿namespace Presentation.Reglator
 {
-	public class UnosRegulatora
-	{
-		public UnosRegulatora()
-		{
-		}
-	}
+    public class UnosRegulatora
+    {
+        public UnosRegulatora()
+        {
+        }
+    }
 }
 

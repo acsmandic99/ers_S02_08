@@ -1,10 +1,9 @@
-﻿using System;
-namespace Domain.Services
+﻿namespace Domain.Services
 {
-	public interface ITekstualniIspis
-	{
-		public void Ispis();
-		//Interfejs za ispis u tekstualnu datoteku
-	}
+    public interface ITekstualniIspis
+    {
+        public void Ispis();
+        //Interfejs za ispis u tekstualnu datoteku
+    }
 }
 

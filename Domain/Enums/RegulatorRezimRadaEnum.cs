@@ -1,4 +1,4 @@
 ﻿namespace Domain.Enums
 {
-    public enum RegulatorRezimRada { Dnevni, Nocni}
+    public enum RegulatorRezimRada { Dnevni, Nocni }
 }

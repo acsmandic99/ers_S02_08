@@ -1,12 +1,10 @@
-﻿using System;
-using Domain.Models;
+﻿using Domain.Models;
 using Domain.Repozitorijumi.HeaterRepozitorijum;
 using Domain.Services;
-using Services.HeaterServisi;
 namespace Services.HeaterServisi
 {
-	public class HeaterService : IHeaterService
-	{
+    public class HeaterService : IHeaterService
+    {
         private readonly Heater _heater;
         private readonly IHeaterRepozitorijum _repository;
 

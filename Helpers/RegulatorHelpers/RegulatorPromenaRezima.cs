@@ -1,5 +1,5 @@
-﻿using Domain.Models;
-using Domain.Enums;
+﻿using Domain.Enums;
+using Domain.Models;
 
 namespace Helpers.RegulatorHelpers
 {
@@ -28,7 +28,7 @@ namespace Helpers.RegulatorHelpers
                     r.Rezim = RegulatorRezimRada.Nocni;
                     Thread.Sleep(Math.Abs((int)interval.TotalMilliseconds));
                 }
-                
+
             }
         }
     }

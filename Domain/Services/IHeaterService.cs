@@ -1,10 +1,9 @@
-﻿using System;
-namespace Domain.Services
+﻿namespace Domain.Services
 {
-	public interface IHeaterService
-	{
-		public void Ukljuci();
-		public void Iskljuci();
-	}
+    public interface IHeaterService
+    {
+        public void Ukljuci();
+        public void Iskljuci();
+    }
 }
 

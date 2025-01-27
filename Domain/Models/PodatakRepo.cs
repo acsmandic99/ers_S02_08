@@ -1,13 +1,12 @@
-﻿using System;
-namespace Domain.Models
+﻿namespace Domain.Models
 {
-	public class PodatakRepo
-	{
+    public class PodatakRepo
+    {
         private TimeSpan intervalMerenja;
 
         public PodatakRepo()
-		{
-		}
-	}
+        {
+        }
+    }
 }
 

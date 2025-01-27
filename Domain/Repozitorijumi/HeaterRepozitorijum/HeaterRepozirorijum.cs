@@ -1,11 +1,10 @@
-﻿using System;
-namespace Domain.Repozitorijumi.HeaterRepozitorijum
+﻿namespace Domain.Repozitorijumi.HeaterRepozitorijum
 {
-	public class HeaterRepozirorijum
-	{
+    public class HeaterRepozirorijum
+    {
 
         private DateTime? _pocetakRada;
-        private TimeSpan _ukupnoRadnoVreme; 
+        private TimeSpan _ukupnoRadnoVreme;
         private double _ukupnaPotrosnja;
 
         public void AzurirajPocetakRada(DateTime vremePocetka)
@@ -38,6 +37,6 @@ namespace Domain.Repozitorijumi.HeaterRepozitorijum
         {
             return _pocetakRada;
         }
-	}
+    }
 }
 

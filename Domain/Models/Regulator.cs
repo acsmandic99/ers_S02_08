@@ -1,17 +1,11 @@
-﻿using Domain.Constants;
-using Domain.Enums;
+﻿using Domain.Enums;
 using Domain.Interfejsi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Models
 {
     public class Regulator
     {
-		private RegulatorRezimRada rezim;
+        private RegulatorRezimRada rezim;
         private DateTime krajDnevnogRezima;
         private DateTime pocetakDnevnogRezima;
         private int ciljanaDnevnaTemperatura;
@@ -19,30 +13,30 @@ namespace Domain.Models
         private readonly ITemperaturaMenadzer _temperaturaMenadzer;
         public ITemperaturaMenadzer TemperaturaMenadzer => _temperaturaMenadzer;
         public DateTime PocetakDnevnogRezima
-		{
-			get { return pocetakDnevnogRezima; }
-			set { pocetakDnevnogRezima = value; }
-		}
+        {
+            get { return pocetakDnevnogRezima; }
+            set { pocetakDnevnogRezima = value; }
+        }
         public RegulatorRezimRada Rezim
         {
             get { return rezim; }
             set { rezim = value; }
         }
         public DateTime KrajDnevnogRezima
-		{
-			get { return krajDnevnogRezima; }
-			set { krajDnevnogRezima = value; }
-		}
-		public int CiljanaDnevnaTemperatura
-		{
-			get { return ciljanaDnevnaTemperatura; }
-			set { ciljanaDnevnaTemperatura = value; }
-		}
-		public int CiljanaNocnaTemperatura
-		{
-			get { return ciljanaNocnaTemperatura; }
-			set { ciljanaNocnaTemperatura = value; }
-		}
+        {
+            get { return krajDnevnogRezima; }
+            set { krajDnevnogRezima = value; }
+        }
+        public int CiljanaDnevnaTemperatura
+        {
+            get { return ciljanaDnevnaTemperatura; }
+            set { ciljanaDnevnaTemperatura = value; }
+        }
+        public int CiljanaNocnaTemperatura
+        {
+            get { return ciljanaNocnaTemperatura; }
+            set { ciljanaNocnaTemperatura = value; }
+        }
 
         public Regulator()
         {
@@ -66,7 +60,7 @@ namespace Domain.Models
                 rezim = RegulatorRezimRada.Nocni;
             }
         }
-        public Regulator(ITemperaturaMenadzer tempMenadzer,DateTime pocetakDnevnogRezima, DateTime krajDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
+        public Regulator(ITemperaturaMenadzer tempMenadzer, DateTime pocetakDnevnogRezima, DateTime krajDnevnogRezima, int ciljanaDnevnaTemperatura, int ciljanaNocnaTemperatura)
         {
             this.krajDnevnogRezima = krajDnevnogRezima;
             this.pocetakDnevnogRezima = pocetakDnevnogRezima;
