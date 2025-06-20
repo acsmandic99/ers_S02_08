@@ -4,33 +4,22 @@ namespace Domain.Models
 {
     public class Heater
     {
-        private bool ukljucen;
-        private HeaterRezimRada rezimRada;
-
-        public bool Ukljucen
-        {
-            get { return ukljucen; }
-            set { ukljucen = value; }
-        }
-        public HeaterRezimRada RezimRada
-        {
-            get { return rezimRada; }
-            set { rezimRada = value; }
-        }
-
+        private bool Ukljucen { get; set; }
+        private HeaterRezimRada RezimRada { get; set; }
+        
         public void UkljuciPec()
         {
-            ukljucen = true;
+            Ukljucen = true;
         }
         public void IskljuciPec()
         {
-            ukljucen = false;
+            Ukljucen = false;
         }
 
         public Heater()
         {
-            ukljucen = false;
-            rezimRada = HeaterRezimRada.HIGH;
+            Ukljucen = false;
+            RezimRada = HeaterRezimRada.HIGH;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Helpers.Temperature
             else
             {
                 //Recemo da na nula dolazi ravnoteze sistema gde nema vise gubitaka toplote
-                trenutnaTemp -= RegulatorConstants.PovecanjeTemperature / 10;
+                trenutnaTemp -= RegulatorConstants.PovecanjeTemperature * RegulatorConstants.SmanjenjeFaktoraTemperature;
                 if (trenutnaTemp < 0)
                     trenutnaTemp = 0;
                 return trenutnaTemp;
