@@ -1,68 +1,35 @@
-﻿using Domain.Interfejsi;
+﻿using System;
+using Domain.Constants;
 using Domain.Models;
+using Domain.Repozitorijumi.HeaterRepozitorijum;
 using Domain.Services;
-using Helpers.RegulatorHelpers;
-using Services.IspisServices;
-using Services.RegulatorServisi;
-using Services.TemperaturaServisi;
+using Presentation;
 
 namespace Application
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            //Testiram,posle cemo obrisati ovo
-            TimeSpan span = TimeSpan.FromSeconds(10);
+            // Inicijalizacija domen sloja
+            IHeaterService heaterService = new DummyHeaterService(); // Dummy implementacija, definisana van ovog fajla
+            IDeviceSaljeTempServis deviceTempService = new DummyDeviceSaljeTempServis(); // Definisana van ovog fajla
+            IHeaterRepozitorijum heaterRepo = new HeaterRepozitorijum();
+            MenadzerTemperatura tempManager = new MenadzerTemperatura();
 
-            DateTime pocetakDnevnogRezima = DateTime.Today.AddHours(20);
-            pocetakDnevnogRezima = pocetakDnevnogRezima.AddMinutes(18);
-            DateTime krajDnevnogRezima = DateTime.Today.AddHours(22);
-            krajDnevnogRezima = krajDnevnogRezima.AddMinutes(54);
-            //Console.WriteLine($"Kraj dnevnog {krajDnevnogRezima}");
-            DateTime dt = DateTime.Now;
-            //Console.WriteLine(dt);
-            Heater heater = new Heater();
-            ITemperaturaMenadzer MT = new MenadzerTemperatura();
-            IDeviceSaljeTempServis slanjeTemperatureServis = new SlanjeTemperatureServis(MT, heater);
-            Regulator r = new Regulator(MT, pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
-            RegulatorPromenaRezima.PromenaRezimaNoviThread(r);
-            Device d1 = new Device(1, TimeSpan.FromMilliseconds(500));
-            Device d2 = new Device(2, TimeSpan.FromMilliseconds(470));
-            Device d3 = new Device(3, TimeSpan.FromMilliseconds(350));
-            Device d4 = new Device(4, TimeSpan.FromMilliseconds(220));
+            DateTime today = DateTime.Today;
+            DateTime pocetakDnevnogRezima = today.AddHours(6);
+            DateTime krajDnevnogRezima = today.AddHours(22);
+            Regulator regulator = new Regulator(tempManager, pocetakDnevnogRezima, krajDnevnogRezima, 22, 18);
 
+            // Inicijalizacija prezentacionog sloja
+            InputManager inputManager = new InputManager();
+            DisplayManager displayManager = new DisplayManager();
+            CommandHandler commandHandler = new CommandHandler(heaterService, deviceTempService, heaterRepo);
+            AppController appController = new AppController(displayManager, inputManager, commandHandler, regulator, tempManager);
 
-            slanjeTemperatureServis.SaljeVrednost(d1);
-            slanjeTemperatureServis.SaljeVrednost(d2);
-            slanjeTemperatureServis.SaljeVrednost(d3);
-            slanjeTemperatureServis.SaljeVrednost(d4);
-
-            IIspisService ispisService = new IspisService();
-
-            IRegulatorKomandujeHeater regulatorServis = new RegulatorServis(r, heater, ispisService);
-
-            Thread t1 = new Thread(() =>
-            {
-                while (true)
-                {
-                    regulatorServis.RegulatorSaljeKomande();
-                    Thread.Sleep(4999);
-                }
-            });
-            t1.Start();
-
-            Thread t = new Thread(() =>
-            {
-                while (true)
-                {
-                    Console.WriteLine($"Prosecna temp {MT.IzracunajProsecnuTemperaturu()}");
-                    Thread.Sleep(5000);
-                }
-            }
-            );
-            t.Start();
-            Console.ReadLine();
+            // Pokretanje aplikacije
+            appController.Run();
         }
     }
 }

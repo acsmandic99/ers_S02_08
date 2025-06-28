@@ -5,24 +5,11 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Presentation": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
         "runtime": {
           "bin/placeholder/Domain.dll": {}
-        }
-      },
-      "Presentation/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Presentation.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Presentation.dll": {}
         }
       }
     }
@@ -32,11 +19,6 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
-    },
-    "Presentation/1.0.0": {
-      "type": "project",
-      "path": "../Presentation/Presentation.csproj",
-      "msbuildProject": "../Presentation/Presentation.csproj"
     }
   },
   "projectFileDependencyGroups": {

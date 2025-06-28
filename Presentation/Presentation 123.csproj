@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <None Remove="InputManager\" />
+    <None Remove="DisplayManager\" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="InputManager\" />
+    <Folder Include="DisplayManager\" />
+  </ItemGroup>
+  
 
-  <ItemGroup>
-    <None Remove="HeaterHelper\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HeaterHelper\" />
-  </ItemGroup>
 </Project>

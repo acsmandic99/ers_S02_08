@@ -4,17 +4,8 @@ namespace Domain.Models
 {
     public class Heater
     {
-        private bool Ukljucen { get; set; }
+        public bool Ukljucen { get; set; }
         private HeaterRezimRada RezimRada { get; set; }
-        
-        public void UkljuciPec()
-        {
-            Ukljucen = true;
-        }
-        public void IskljuciPec()
-        {
-            Ukljucen = false;
-        }
 
         public Heater()
         {

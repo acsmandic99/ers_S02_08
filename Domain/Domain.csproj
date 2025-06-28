@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Presentation\Presentation.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="PomocneMetode\" />
     <None Remove="Repozitorijumi\" />
     <None Remove="Repozitorijumi\HeaterRepozitorijum\" />

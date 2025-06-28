@@ -12,13 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="HeaterServisi\" />
     <None Remove="TekstualniIspisFolder\" />
     <None Remove="PripremaZaIspisFolder\" />
+    <None Remove="HeaterUkljuciServices\" />
+    <None Remove="HeaterIskljuciServices\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="HeaterServisi\" />
     <Folder Include="TekstualniIspisFolder\" />
     <Folder Include="PripremaZaIspisFolder\" />
+    <Folder Include="HeaterUkljuciServices\" />
+    <Folder Include="HeaterIskljuciServices\" />
   </ItemGroup>
 </Project>
