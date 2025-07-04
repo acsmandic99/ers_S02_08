@@ -5,16 +5,14 @@ namespace Domain.Models
     public class Device
     {
         public int IdDevice { get; set; }
-        public double TrenutnaTemp { get; set; }
-        public TimeSpan IntervalMerenja { get; set; }//Radi jednostavnosti recimo da je ovo deo njegove specifikacije pa mu je zato mesto ovde
-        
+        public double TempNow { get; set; }
 
-        public Device(int idDevice, TimeSpan intervalMerenja)
+        public Device() { }
+
+        public Device(int idDevice, double tempDevice)
         {
-            //TO DO: Osigurati da bude Jedinstveni ID
             IdDevice = idDevice;
-            IntervalMerenja = intervalMerenja;
-            TrenutnaTemp = RegulatorConstants.MinTemperature;
+            TempNow = tempDevice;
         }
 
     }

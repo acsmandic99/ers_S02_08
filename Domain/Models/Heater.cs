@@ -4,13 +4,20 @@ namespace Domain.Models
 {
     public class Heater
     {
-        public bool Ukljucen { get; set; }
-        private HeaterRezimRada RezimRada { get; set; }
+        public bool IsActive { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public TimeSpan TotalWorkingTime { get; set; }
+        public double ResorceUsed { get; set; }
+    
 
         public Heater()
         {
-            Ukljucen = false;
-            RezimRada = HeaterRezimRada.HIGH;
+            IsActive = false;
+            TotalWorkingTime = TimeSpan.Zero;
+            ResorceUsed = 0.0;
+            
         }
+
     }
 }

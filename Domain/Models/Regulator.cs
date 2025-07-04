@@ -1,33 +1,25 @@
-﻿using Domain.Enums;
-using Domain.Interfejsi;
+﻿using Domain.Models;
+using Domain.Enums;
 
 namespace Domain.Models
 {
     public class Regulator
     {
-        public RegulatorRezimRada Rezim { get; set; }
-        public DateTime PocetakDnevnogRezima { get; set; }
-        public DateTime KrajDnevnogRezima { get; set; }
-        public int CiljanaDnevnaTemperatura { get; set; }
-        public int CiljanaNocnaTemperatura { get; set; }
-        public ITemperaturaMenadzer TemperaturaMenadzer { get; }
+        public int WorkStart { get; set; }
+        public int WorkEnd { get; set; }
+        public double TemperatureDay { get; set; }
+        public double TemperatureNight { get; set; }
+        public RegulatorRezimRada Regime { get; set; }
 
-        public Regulator(
-            ITemperaturaMenadzer temperaturaMenadzer,
-            DateTime pocetakDnevnogRezima,
-            DateTime krajDnevnogRezima,
-            int ciljanaDnevnaTemperatura,
-            int ciljanaNocnaTemperatura)
+        public Regulator() { }
+
+        public Regulator(int start, int end, double tempDay, double tempNight)
         {
-            TemperaturaMenadzer = temperaturaMenadzer;
-            PocetakDnevnogRezima = pocetakDnevnogRezima;
-            KrajDnevnogRezima = krajDnevnogRezima;
-            CiljanaDnevnaTemperatura = ciljanaDnevnaTemperatura;
-            CiljanaNocnaTemperatura = ciljanaNocnaTemperatura;
-
-            Rezim = (DateTime.Now >= PocetakDnevnogRezima && DateTime.Now < KrajDnevnogRezima)
-                ? RegulatorRezimRada.Dnevni
-                : RegulatorRezimRada.Nocni;
+            WorkStart = start;
+            WorkEnd = end;
+            TemperatureDay = tempDay;
+            TemperatureNight = tempNight;
         }
+
     }
 }

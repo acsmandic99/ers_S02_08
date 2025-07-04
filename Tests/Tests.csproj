@@ -19,4 +19,18 @@
     <ProjectReference Include="..\Helpers\Helpers.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Service\" />
+    <None Remove="Domain\" />
+    <None Remove="Service\DeviceServiceTests\" />
+    <None Remove="Service\HeaterServiceTests\" />
+    <None Remove="Service\RegulatorServiceTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\" />
+    <Folder Include="Domain\" />
+    <Folder Include="Service\DeviceServiceTests\" />
+    <Folder Include="Service\HeaterServiceTests\" />
+    <Folder Include="Service\RegulatorServiceTests\" />
+  </ItemGroup>
 </Project>

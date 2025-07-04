@@ -11,9 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="HeaterHelper\" />
+    <None Remove="ModeDetermination\" />
+    <None Remove="AverageTemperature\" />
+    <None Remove="RegulatorFactory\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="HeaterHelper\" />
+    <Folder Include="ModeDetermination\" />
+    <Folder Include="AverageTemperature\" />
+    <Folder Include="RegulatorFactory\" />
   </ItemGroup>
 </Project>

@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <None Remove="PomocneMetode\" />
-    <None Remove="Repozitorijumi\" />
-    <None Remove="Repozitorijumi\HeaterRepozitorijum\" />
+    <None Remove="Repositories\" />
+    <None Remove="Repositories\DeviceRepositories\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repozitorijumi\" />
-    <Folder Include="Repozitorijumi\HeaterRepozitorijum\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\DeviceRepositories\" />
   </ItemGroup>
 </Project>
